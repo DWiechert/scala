@@ -1,5 +1,3 @@
-package chapter4.section3
-
 import scala.collection.mutable.Map
 
 // When a singleton object shares the same name with a class, it is called that class's companion object

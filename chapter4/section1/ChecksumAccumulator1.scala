@@ -1,5 +1,3 @@
-package chapter4.section1
-
 class ChecksumAccumulator1 {
   private var sum = 0
 
