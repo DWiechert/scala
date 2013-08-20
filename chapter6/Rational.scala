@@ -6,14 +6,15 @@ package chapter6
 class Rational(n: Int, d: Int) {
   require(d != 0)
 
-  val numer = n
-  val denom = d
+  private val g = gcd(n.abs, d.abs)
+  val numer = n / g
+  val denom = d / g
 
   // All auxiliary constructors must call either the primary constructor
   // or another auxiliary constructor which eventually calls the primary
   def this(n: Int) = this(n, 1) // auxiliary constructor
 
-  override def toString = n + "/" + d
+  override def toString = numer + "/" + denom
 
   def add(that: Rational): Rational =
     new Rational(
@@ -25,4 +26,7 @@ class Rational(n: Int, d: Int) {
 
   def max(that: Rational) =
     if (lessThan(that)) that else this
+
+  private def gcd(a: Int, b: Int): Int =
+    if (b == 0) a else gcd(b, a % b)
 }
