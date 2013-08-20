@@ -15,4 +15,10 @@ class Rational(n: Int, d: Int) {
     new Rational(
       numer * that.denom + that.numer * denom,
       denom * that.denom)
+
+  def lessThan(that: Rational) =
+    numer * that.denom < that.numer * denom
+
+  def max(that: Rational) =
+    if (lessThan(that)) that else this
 }
