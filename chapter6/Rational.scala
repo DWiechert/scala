@@ -9,6 +9,10 @@ class Rational(n: Int, d: Int) {
   val numer = n
   val denom = d
 
+  // All auxiliary constructors must call either the primary constructor
+  // or another auxiliary constructor which eventually calls the primary
+  def this(n: Int) = this(n, 1) // auxiliary constructor
+
   override def toString = n + "/" + d
 
   def add(that: Rational): Rational =
