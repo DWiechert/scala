@@ -53,4 +53,7 @@ class Rational(n: Int, d: Int) {
 
   private def gcd(a: Int, b: Int): Int =
     if (b == 0) a else gcd(b, a % b)
+
+  // If you want to do 2 * r, input this function in the REPL:
+  // implicit def intToRational(x: Int) = new Rational(x)
 }
