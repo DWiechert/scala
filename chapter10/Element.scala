@@ -1,5 +1,7 @@
 package chapter10
 
+import Element.elem
+
 /**
  * This class was constructed over all sections of chapter 10.
  */
@@ -22,7 +24,7 @@ abstract class Element {
   /**
    * Adds the contents of the provided Element below the contents of this Element.
    */
-  def above(that: Element): Element = new ArrayElement(this.contents ++ that.contents)
+  def above(that: Element): Element = elem(this.contents ++ that.contents)
 
   /**
    * Adds the contents of the provided Element beside the contents of this Element.
@@ -35,7 +37,7 @@ abstract class Element {
     //    new ArrayElement(contents)
 
     // Functional way to concatenate arrays
-    new ArrayElement(
+    elem(
       for (
         (thisLine, thatLine) <- this.contents zip that.contents
       ) yield thisLine + thatLine)
@@ -48,6 +50,28 @@ abstract class Element {
  * Factory class for Element.
  */
 object Element {
+  /**
+   * Implementation of Element that takes the contents in its constructor.
+   */
+  private class ArrayElement(val contents: Array[String]) extends Element
+
+  /**
+   * Implementation of Element that holds only one line.
+   */
+  private class LineElement(s: String) extends Element {
+    val contents = Array(s)
+    override def width = s.length
+    override def height = 1
+  }
+  
+  /**
+   * Implementation of Element where every character is the same.
+   */
+  private class UniformElement(ch: Char, override val width: Int, override val height: Int) extends Element {
+    private val line = ch.toString * width
+    def contents = Array.fill(height)(line)
+  }
+
   /**
    * Creates an Element from an Array.
    */
