@@ -19,28 +19,50 @@ abstract class Element {
   /**
    * The width of the contents.
    */
-  def width: int = if (height == 0) 0 else contents(0).length()
+  def width: Int = if (height == 0) 0 else contents(0).length()
 
   /**
    * Adds the contents of the provided Element below the contents of this Element.
    */
-  def above(that: Element): Element = elem(this.contents ++ that.contents)
+  def above(that: Element): Element = {
+    val this1 = this widen that.width
+    val that1 = that widen this.width
+    elem(this1.contents ++ that1.contents)
+  }
+
+  /**
+   * Widens this Element by padding spaces on either side to get the specified width.
+   */
+  def widen(w: Int): Element = {
+    if (w <= width) this
+    else {
+      val left = elem(' ', (w - width) / 2, height)
+      val right = elem(' ', w - width - left.width, height)
+      left beside this beside right
+    }
+  }
 
   /**
    * Adds the contents of the provided Element beside the contents of this Element.
    */
   def beside(that: Element): Element = {
-    // Imperative way to concatenate arrays
-    //    val contents = new Array[String](this.contents.length)
-    //    for (i <- 0 until this.contents.length)
-    //      contents(i) = this.contents(i) + that.contents(i)
-    //    new ArrayElement(contents)
-
-    // Functional way to concatenate arrays
+    val this1 = this heighten that.height
+    val that1 = that heighten this.height
     elem(
-      for (
-        (thisLine, thatLine) <- this.contents zip that.contents
-      ) yield thisLine + thatLine)
+      for ((thisLine, thatLine) <- this1.contents zip that1.contents)
+        yield thisLine + thatLine)
+  }
+
+  /**
+   * Heightens this Element by padding spaces on top and bottom to get the specified height.
+   */
+  def heighten(h: Int): Element = {
+    if (h <= height) this
+    else {
+      val top = elem(' ', width, (h - height) / 2)
+      val bot = elem(' ', width, h - height - top.height)
+      top above this above bot
+    }
   }
 
   override def toString = contents mkString "\n"
@@ -63,7 +85,7 @@ object Element {
     override def width = s.length
     override def height = 1
   }
-  
+
   /**
    * Implementation of Element where every character is the same.
    */
