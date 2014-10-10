@@ -1,7 +1,7 @@
 package chapter7.section6;
 
 public class Example1J {
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		int i = 0;
 		boolean foundIt = false;
 		while (i < args.length) {

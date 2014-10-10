@@ -4,11 +4,11 @@ import scala.io.Source
 
 object LongLines {
   def processFile(filename: String, width: Int) {
-    def processLine(line: String) {
-      if (line.length() > width) {
-        println(filename + ": " + line)
+      def processLine(line: String) {
+        if (line.length() > width) {
+          println(filename + ": " + line)
+        }
       }
-    }
 
     val source = Source.fromFile(filename)
     for (line <- source.getLines) {

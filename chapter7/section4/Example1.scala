@@ -12,7 +12,7 @@ try {
   // Use and close file
 } catch {
   case ex: java.io.FileNotFoundException => // Handle missing file
-  case ex: java.io.IOException => // Handle other I/O error
+  case ex: java.io.IOException           => // Handle other I/O error
 }
 
 // Try/Finally

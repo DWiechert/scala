@@ -1,10 +1,10 @@
 package chapter1.section3;
 
 public class Example1J {
-	private int index;
-	private String name;
-	
-	public Example1J(int index, String name) {
+	private final int index;
+	private final String name;
+
+	public Example1J(final int index, final String name) {
 		this.index = index;
 		this.name = name;
 	}
