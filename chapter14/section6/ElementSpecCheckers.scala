@@ -10,7 +10,7 @@ import chapter14.section1.Element.elem
  * <p/>
  * Run with: (new ElementSpec).execute()
  */
-class ElementSpec extends WordSpec with Checkers {
+class ElementSpecCheckers extends WordSpec with Checkers {
   // ScalaCheck will generate hundreds of w's and h's for these checks to see if there are any scenarios
   // that these properties do not hold true.
   

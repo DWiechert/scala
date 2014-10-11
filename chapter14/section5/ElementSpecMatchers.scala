@@ -9,7 +9,7 @@ import chapter14.section1.Element.elem
  * <p/>
  * Run with: (new ElementSpec).execute()
  */
-class ElementSpec extends FlatSpec with ShouldMatchers {
+class ElementSpecMatchers extends FlatSpec with ShouldMatchers {
   "A Uniform Element" should
     "have a width equal to the passed value" in {
     val ele = elem('x', 2, 3)
